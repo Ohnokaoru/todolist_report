@@ -17,19 +17,11 @@
         <label for="{{form.text.id_for_label}}">內文</label> <br>
         {{form.text}} <br>
 
-        <label for="{{form.important.id_for_label}}">重要</label> <br>
+        <label for="{{form.important.id_for_label}}">重要</label>
         {{form.important}} <br>
 
-        <label for="{{form.create_time.id_for_label}}">建立時間</label> <br>
-        {{form.create_time}} <br>
-
-        <label for="{{form.completed.id_for_label}}">是否完成</label> <br>
+        <label for="{{form.completed.id_for_label}}">完成</label>
         {{form.completed}} <br>
-
-        {% if form.completed %}
-        <label for="{{form.completed_time.id_for_label}}">完成時間</label> <br>
-        {{form.completed_time}} <br>
-        {% endif %}
 
         <div id="message">
             {{message}}
@@ -45,7 +37,7 @@
             {% endfor %}
 
             {% if form.non_field_errors %}
-            {% for error in non_field_errors %}
+            {% for error in form.non_field_errors %}
             {{error}} <br>
             {% endfor %}
             {% endif %}

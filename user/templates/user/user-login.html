@@ -10,6 +10,7 @@
 <div id="user-login-form">
     <form action="" method="POST">
         {% csrf_token %}
+        <!-- 沒有自訂的 Form: 需要使用原生 HTML 標籤來手動創建和處理表單 -->
 
         <label for="{{form.username.id_for_label}}">使用者帳號</label> <br>
         <input type="text" name="username" required><br>

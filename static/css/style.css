@@ -18,7 +18,8 @@ body {
 }
 
 #regist-form,
-#user-login-form {
+#user-login-form,
+#create-todo-form {
     margin: auto;
     background-color: burlywood;
     width: 40%;
@@ -30,4 +31,17 @@ body {
 #reset-button {
     margin-top: 10px;
     margin-left: 10px;
+}
+
+#navbar {
+    background-color: burlywood;
+    padding: 10px;
+}
+
+#navbar a {
+    text-decoration: none;
+    background-color: white;
+    padding: 5px;
+    border-radius: 5px;
+
 }

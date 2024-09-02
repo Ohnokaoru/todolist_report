@@ -10,8 +10,9 @@ from .forms import TodoForm
 
 # 新增待辦事項
 @login_required
-def creat_todo(request):
+def create_todo(request):
     message = ""
+    todoform = ""
 
     if request.method == "POST":
         try:
@@ -29,6 +30,6 @@ def creat_todo(request):
 
     return render(
         request,
-        "create-todo.html",
+        "todo/create-todo.html",
         {"form": form, "todoform": todoform, "message": message},
     )
