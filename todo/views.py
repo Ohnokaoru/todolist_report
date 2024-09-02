@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .forms import TodoForm
 import math
+from django.utils import timezone
 
 
 # Create your views here.
@@ -18,6 +19,7 @@ def create_todo(request):
         try:
             form = TodoForm(request.POST)
             todoform = form.save(commit=False)
+            # completed_time為空，所以目前不需要驗證
             todoform.user = request.user
             todoform.save()
             return redirect("all-todo")
@@ -99,3 +101,37 @@ def todo_detail(request, todo_id):
         return redirect("all-todo")
 
     return render(request, "todo/todo-detail.html", {"todo": todo})
+
+
+# 修改待辦事項
+@login_required
+def edit_todo(request, todo_id):
+    message = ""
+    try:
+        todo = Todo.objects.get(user=request.user, id=todo_id)
+    except Todo.DoesNotExist:
+        return redirect("all-todo")
+
+    if request.method == "POST":
+        form = TodoForm(request.POST, instance=todo)
+
+        if form.is_valid():
+            todoform = form.save(commit=False)
+            todoform.user = request.user
+            if todoform.completed:
+                todoform.completed_time = timezone.now()
+
+            todoform.save()
+            return redirect("todo-detail", todo_id=todo.id)
+
+        else:
+            message = "資料錯誤"
+
+    else:
+        form = TodoForm(instance=todo)
+
+    return render(
+        request,
+        "todo/edit-todo.html",
+        {"message": message, "form": form, "todo": todo},
+    )

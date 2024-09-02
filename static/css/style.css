@@ -21,7 +21,8 @@ body {
 #user-login-form,
 #create-todo-form,
 #all-todo-list,
-#todo-detail {
+#todo-detail,
+#edit-todo {
     margin: auto;
     background-color: burlywood;
     width: 40%;
@@ -41,7 +42,8 @@ body {
 }
 
 #navbar a,
-#page-a-button a {
+#page-a-button a,
+#edit-a-button a {
     text-decoration: none;
     background-color: white;
     padding: 5px;
@@ -58,7 +60,8 @@ body {
     border-radius: 10px;
 }
 
-#page-a-button {
+#page-a-button,
+#edit-a-button {
     text-align: center;
     margin: auto;
 }

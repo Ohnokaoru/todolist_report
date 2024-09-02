@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}修改待辦事項{% endblock %}
+
+{% block content %}
+<div id="title">
+    <h1>修改待辦事項</h1>
+</div>
+
+<div id="edit-todo">
+    <form action="" method="POST">
+        {% csrf_token %}
+
+        <label for="{{form.title.id_for_label}}">標題</label> <br>
+        {{form.title}} <br>
+
+        <label for="{{form.text.id_for_label}}">內文</label> <br>
+        {{form.text}} <br>
+
+        <label for="{{form.important.id_for_label}}">重要</label>
+        {{form.important}} <br>
+
+        <label for="{{form.completed.id_for_label}}">完成</label>
+        {{form.completed}}
+
+
+        <div id="message">
+            {{message}}
+        </div>
+
+        <div id="errors">
+            {% for field in form %}
+            {% if field.errors %}
+            {% for error in field.errors %}
+            {{error}} <br>
+            {% endfor %}
+            {% endif %}
+            {% endfor %}
+
+
+            {% if form.non_field_errors %}
+            {% for error in form.non_field.errors %}
+            {{error}} <br>
+            {% endfor %}
+            {% endif %}
+
+
+
+        </div>
+
+
+        <input type="submit" id="submit-button" value="確定">
+        <input type="reset" id="reset-button" value="清除">
+
+    </form>
+</div>
+{% endblock %}

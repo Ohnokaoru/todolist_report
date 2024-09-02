@@ -8,7 +8,7 @@
 </div>
 <div id="todo-detail">
     {{todo.title}}
-    {% if todo.complated %}
+    {% if todo.completed %}
     (完成)<br>
     {% else %}
     (未完成) <br>
@@ -26,7 +26,18 @@
         創建時間:{{todo.create_time}} <br>
 
 
+        {% if todo.completed %}
+        <label for="{{todo.completed_time.id_for_label}}">完成時間:</label>
+        {{todo.completed_time}} <br>
+        {% endif %}
+
+
 
     </div>
+    <div id="edit-a-button">
+        <a href="{% url 'edit-todo' todo.id %}">修改內文</a>
+    </div>
 </div>
+
+
 {% endblock %}

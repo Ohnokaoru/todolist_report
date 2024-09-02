@@ -9,7 +9,7 @@ class Todo(models.Model):
     important = models.BooleanField(default=False)
     create_time = models.DateTimeField(auto_now_add=True)
     completed = models.BooleanField(default=False)
-    completed_time = models.DateField(blank="", null=True)
+    completed_time = models.DateTimeField(blank="", null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
