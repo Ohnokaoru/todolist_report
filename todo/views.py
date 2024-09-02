@@ -135,3 +135,53 @@ def edit_todo(request, todo_id):
         "todo/edit-todo.html",
         {"message": message, "form": form, "todo": todo},
     )
+
+
+# 選取完成待辦事項
+@login_required
+def uncompleted_todo(request):
+    uncompleted_todos = Todo.objects.filter(user=request.user, completed=False)
+    total_uncompleted_todo = len(uncompleted_todos)
+    if total_uncompleted_todo:
+
+        page = int(request.GET.get("page", 1))
+        page_btn = request.GET.get("page_btn", "")
+        page_size = 3
+        total_page = math.ceil(total_uncompleted_todo / page_size)
+
+        # 合理頁數
+        if page > total_page:
+            page = total_page
+
+        if page < 1:
+            page = 1
+
+        # 點擊上一頁
+        if page_btn == "prev" and page > 1:
+            page -= 1
+
+        # 點擊下一頁
+        if page_btn == "next" and page < total_page:
+            page += 1
+
+        # 計算頁數
+        start = (page - 1) * page_size
+        end = start + page_size
+        uncompleted_todos = Todo.objects.filter(
+            user=request.user, completed=False
+        ).order_by("-create_time")[start:end]
+
+        next = page < total_page
+        prev = page > 1
+
+        return render(
+            request,
+            "todo/uncompleted-todo.html",
+            {
+                "page": page,
+                "total_page": total_page,
+                "uncompleted_todos": uncompleted_todos,
+                "next": next,
+                "prev": prev,
+            },
+        )

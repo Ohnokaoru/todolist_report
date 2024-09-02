@@ -7,4 +7,5 @@ urlpatterns = [
     path("", views.all_todo, name="all-todo"),
     path("todo-detail/<int:todo_id>/", views.todo_detail, name="todo-detail"),
     path("edit-todo/<int:todo_id>/", views.edit_todo, name="edit-todo"),
+    path("uncompleted-todo/", views.uncompleted_todo, name="uncompleted-todo"),
 ]

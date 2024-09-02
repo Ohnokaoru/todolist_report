@@ -22,7 +22,8 @@ body {
 #create-todo-form,
 #all-todo-list,
 #todo-detail,
-#edit-todo {
+#edit-todo,
+#uncompleted-todo-list {
     margin: auto;
     background-color: burlywood;
     width: 40%;
@@ -53,7 +54,8 @@ body {
 
 
 #all-todo-list-text,
-#todo-detail-text {
+#todo-detail-text,
+#uncompleted-todo-list-text {
     background-color: beige;
     padding: 10px;
     margin-bottom: 10px;

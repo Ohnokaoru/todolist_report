@@ -5,7 +5,7 @@
     <id>UMLClass</id>
     <coordinates>
       <x>40</x>
-      <y>180</y>
+      <y>140</y>
       <w>210</w>
       <h>70</h>
     </coordinates>
@@ -17,7 +17,7 @@
     <id>Relation</id>
     <coordinates>
       <x>240</x>
-      <y>210</y>
+      <y>170</y>
       <w>90</w>
       <h>30</h>
     </coordinates>
@@ -45,10 +45,10 @@ user_logout</panel_attributes>
       <x>300</x>
       <y>100</y>
       <w>30</w>
-      <h>360</h>
+      <h>170</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>10.0;340.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;150.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -78,12 +78,15 @@ user_logout</panel_attributes>
       <x>340</x>
       <y>220</y>
       <w>210</w>
-      <h>190</h>
+      <h>110</h>
     </coordinates>
     <panel_attributes>todo
 --
 create-todo
 all_todo
+edit_todo
+uncompleted_todo
+delete_todo
 </panel_attributes>
     <additional_attributes/>
   </element>
