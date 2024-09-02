@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}新增待辦事項{% endblock %}
+
+{% block content %}
+<div id="title">
+    <h1>新增待辦事項</h1>
+</div>
+
+<div id="create-todo-form">
+    <form action="" method="POST">
+        {% csrf_token %}
+
+        <label for="{{form.title.id_for_label}}">標題</label> <br>
+        {{form.title}} <br>
+
+        <label for="{{form.text.id_for_label}}">內文</label> <br>
+        {{form.text}} <br>
+
+        <label for="{{form.important.id_for_label}}">重要</label> <br>
+        {{form.important}} <br>
+
+        <label for="{{form.create_time.id_for_label}}">建立時間</label> <br>
+        {{form.create_time}} <br>
+
+        <label for="{{form.completed.id_for_label}}">是否完成</label> <br>
+        {{form.completed}} <br>
+
+        {% if form.completed %}
+        <label for="{{form.completed_time.id_for_label}}">完成時間</label> <br>
+        {{form.completed_time}} <br>
+        {% endif %}
+
+        <div id="message">
+            {{message}}
+        </div>
+
+        <div id="errors">
+            {% for field in form %}
+            {% if field.errors %}
+            {% for error in field.errors %}
+            {{error}} <br>
+            {% endfor %}
+            {% endif %}
+            {% endfor %}
+
+            {% if form.non_field_errors %}
+            {% for error in non_field_errors %}
+            {{error}} <br>
+            {% endfor %}
+            {% endif %}
+
+        </div>
+
+
+        <input type="submit" id="submit-button" value="確定">
+        <input type="reset" id="reset-button" value="清除">
+
+
+
+    </form>
+</div>
+
+
+
+
+{% endblock %}

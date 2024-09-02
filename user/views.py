@@ -30,7 +30,7 @@ def user_register(request):
     )
 
 
-# 登入，手動驗證處理表單(手動提取表單欄位資料)
+# 登入，手動驗證處理表單(手動提取表單欄位資料)，html也要label與input搭配
 def user_login(request):
     message = ""
 
@@ -46,7 +46,7 @@ def user_login(request):
         else:
             message = "資料錯誤"
 
-    return render(request, "user-login.html", {"message": message})
+    return render(request, "user/user-login.html", {"message": message})
 
 
 # 登出

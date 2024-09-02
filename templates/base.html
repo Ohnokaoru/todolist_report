@@ -11,7 +11,17 @@
 </head>
 
 <body>
+    <div id="navbar">
+        {% if request.user.is_authenticated %}
+        歡迎{{request.user}}登入:
+        <a href="{% url 'user-logout' %}">登出</a>
 
+        {% else %}
+        <a href="{% url 'user-login' %}">登入</a>
+        <a href="{% url 'user-register' %}">註冊</a>
+
+        {% endif %}
+    </div>
     {% block content %}{% endblock %}
 
 </body>

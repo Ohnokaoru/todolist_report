@@ -17,7 +17,8 @@ body {
 
 }
 
-#regist-form {
+#regist-form,
+#user-login-form {
     margin: auto;
     background-color: burlywood;
     width: 40%;

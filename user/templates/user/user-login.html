@@ -12,31 +12,13 @@
         {% csrf_token %}
 
         <label for="{{form.username.id_for_label}}">使用者帳號</label> <br>
-        {{form.username}} <br>
+        <input type="text" name="username" required><br>
 
         <label for="{{form.password.id_for_label}}">使用者密碼</label> <br>
-        {{form.password}} <br>
+        <input type="password" name="password" required><br> <br>
 
         <div id="message">
             {{message}}
-        </div>
-
-
-        <div id="errors">
-            {% for field in form %}
-            {% if field.errors %}
-            {% for error in field.errors %}
-            {{error}} <br>
-            {% endfor %}
-            {% endif %}
-            {% endfor %}
-
-            {% if form.non_field.errors %}
-            {% for error in non_field.errors %}
-            {{error}} <br>
-            {% endfor %}
-            {% endif %}
-
         </div>
 
 
@@ -45,3 +27,4 @@
 
     </form>
 </div>
+{% endblock %}
