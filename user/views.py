@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate
 # Create your views here.
 
 
-# 註冊(使用內建UserCreationForm表單)
+# 註冊(使用內建UserCreationForm表單自動驗證)
 def user_register(request):
     message = ""
     if request.method == "POST":
@@ -29,7 +29,7 @@ def user_register(request):
     )
 
 
-# 登入，直接除理表單(抓取欄位)
+# 登入，手動驗證處理表單(手動提取表單欄位資料)
 def user_login(request):
     message = ""
 
