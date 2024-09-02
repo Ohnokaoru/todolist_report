@@ -13,8 +13,20 @@ body {
 
 #errors {
     color: red;
+    margin-top: 10px;
+
 }
 
 #regist-form {
     margin: auto;
+    background-color: burlywood;
+    width: 40%;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+#submit-button,
+#reset-button {
+    margin-top: 10px;
+    margin-left: 10px;
 }

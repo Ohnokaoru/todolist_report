@@ -14,6 +14,7 @@ def user_register(request):
         # 會自動驗證表單內容，若無誤就建立表單
         if form.is_valid():
             form.save()
+            message = "註冊成功"
 
         else:
             message = "資料錯誤:"
