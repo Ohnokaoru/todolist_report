@@ -19,7 +19,8 @@ body {
 
 #regist-form,
 #user-login-form,
-#create-todo-form {
+#create-todo-form,
+#all-todo-list {
     margin: auto;
     background-color: burlywood;
     width: 40%;
@@ -38,10 +39,24 @@ body {
     padding: 10px;
 }
 
-#navbar a {
+#navbar a,
+#page-a-button a {
     text-decoration: none;
     background-color: white;
     padding: 5px;
     border-radius: 5px;
 
+}
+
+
+#all-todo-list-text {
+    background-color: beige;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+#page-a-button {
+    text-align: center;
+    margin: auto;
 }

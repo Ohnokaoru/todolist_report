@@ -78,13 +78,13 @@ user_logout</panel_attributes>
       <x>340</x>
       <y>220</y>
       <w>210</w>
-      <h>90</h>
+      <h>190</h>
     </coordinates>
     <panel_attributes>todo
 --
-user_register
-user_login
-user_logout</panel_attributes>
+create-todo
+all_todo
+</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>
