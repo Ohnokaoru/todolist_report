@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}內文{% endblock %}
+
+{% block content %}
+<div id="title">
+    <h1>內文</h1>
+</div>
+<div id="todo-detail">
+    {{todo.title}}
+    {% if todo.complated %}
+    (完成)<br>
+    {% else %}
+    (未完成) <br>
+    {% endif %}
+    <br>
+    <div id="todo-detail-text">
+        {{todo.text}}
+        <br>
+        <br>
+        {% if todo.important %}
+        重要: 是<br>
+        {% else %}
+        重要: 否<br>
+        {% endif %}
+        創建時間:{{todo.create_time}} <br>
+
+
+
+    </div>
+</div>
+{% endblock %}

@@ -87,3 +87,15 @@ def all_todo(request):
                 "prev": prev,
             },
         )
+
+
+# 詳細內文
+@login_required
+def todo_detail(request, todo_id):
+    try:
+        todo = Todo.objects.get(user=request.user, id=todo_id)
+
+    except Todo.DoesNotExist:
+        return redirect("all-todo")
+
+    return render(request, "todo/todo-detail.html", {"todo": todo})

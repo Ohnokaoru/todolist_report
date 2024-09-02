@@ -20,7 +20,8 @@ body {
 #regist-form,
 #user-login-form,
 #create-todo-form,
-#all-todo-list {
+#all-todo-list,
+#todo-detail {
     margin: auto;
     background-color: burlywood;
     width: 40%;
@@ -49,7 +50,8 @@ body {
 }
 
 
-#all-todo-list-text {
+#all-todo-list-text,
+#todo-detail-text {
     background-color: beige;
     padding: 10px;
     margin-bottom: 10px;
