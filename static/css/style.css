@@ -1,3 +1,20 @@
 body {
-    background-color: bisque;
+    background-color: rgb(247, 227, 204);
+}
+
+#title {
+    text-align: center;
+}
+
+#message {
+    color: red;
+    font-weight: 700;
+}
+
+#errors {
+    color: red;
+}
+
+#regist-form {
+    margin: auto;
 }

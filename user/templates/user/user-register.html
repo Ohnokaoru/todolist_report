@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}註冊{% endblock %}
+
+{% block content %}
+<div id="title">
+    <h1>註冊</h1>
+</div>
+
+<div id="regist-form">
+    <form action="" method="POST">
+        {% csrf_token %}
+
+        <label for="{{form.username.id_for_label}}">使用者帳號</label> <br>
+        {{form.username}} <br>
+
+        <label for="{{form.password1.id_for_label}}">使用者密碼</label> <br>
+        {{form.password1}} <br>
+
+        <label for="{{form.password2.id_for_label}}">密碼確認</label> <br>
+        {{form.password2}} <br>
+
+
+        <table>
+            <tr>
+                <td>長度為150個字或以下，僅限字母、數字和 @/./+/-/_。</td>
+            </tr>
+            <tr>
+                <td>你的密碼不能與其他個人資訊太相近。</td>
+            </tr>
+            <tr>
+                <td>你的密碼必須包含至少 8 個字元。</td>
+            </tr>
+            <tr>
+                <td>你不能使用常見的密碼。</td>
+            </tr>
+            <tr>
+                <td>你的密碼不能全都是數字。</td>
+            </tr>
+
+        </table>
+
+        <div id="message">
+            {{message}}
+        </div>
+
+        <div id="errors">
+            {% for field in form %}
+            {% if field.errors %}
+            {% for error in field.errors %}
+            {{error}} <br>
+            {% endfor %}
+            {% endif %}
+            {% endfor %}
+
+            {% if non_field.errors %}
+            {% for error in non_field.errors %}
+            {{error}} <br>
+            {% endfor %}
+            {% endif %}
+
+        </div>
+
+
+        <input type="submit" id="submit-button" value="確定">
+        <input type="reset" id="reset-button" value="清除">
+
+    </form>
+</div>
+
+
+{% endblock %}
