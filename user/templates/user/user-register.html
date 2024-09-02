@@ -53,7 +53,7 @@
             {% endif %}
             {% endfor %}
 
-            {% if non_field.errors %}
+            {% if form.non_field.errors %}
             {% for error in non_field.errors %}
             {{error}} <br>
             {% endfor %}

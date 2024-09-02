@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}登入{% endblock %}
+
+{% block content %}
+<div id="title">
+    <h1>登入</h1>
+</div>
+
+<div id="user-login-form">
+    <form action="" method="POST">
+        {% csrf_token %}
+
+        <label for="{{form.username.id_for_label}}">使用者帳號</label> <br>
+        {{form.username}} <br>
+
+        <label for="{{form.password.id_for_label}}">使用者密碼</label> <br>
+        {{form.password}} <br>
+
+        <div id="message">
+            {{message}}
+        </div>
+
+
+        <div id="errors">
+            {% for field in form %}
+            {% if field.errors %}
+            {% for error in field.errors %}
+            {{error}} <br>
+            {% endfor %}
+            {% endif %}
+            {% endfor %}
+
+            {% if form.non_field.errors %}
+            {% for error in non_field.errors %}
+            {{error}} <br>
+            {% endfor %}
+            {% endif %}
+
+        </div>
+
+
+        <input type="submit" id="submit-button" value="確定">
+        <input type="reset" id="reset-button" value="清除">
+
+    </form>
+</div>
