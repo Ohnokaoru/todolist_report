@@ -46,3 +46,10 @@ def user_login(request):
             message = "資料錯誤"
 
     return render(request, "user-login.html", {"message": message})
+
+
+# 登出
+def user_logout(request):
+    logout(request)
+
+    return redirect("user-login")
