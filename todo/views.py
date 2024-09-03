@@ -41,7 +41,6 @@ def create_todo(request):
 # 檢查所有自己的待辦事項(頁數)
 @login_required
 def all_todo(request):
-    message = ""
 
     todos = Todo.objects.filter(user=request.user).order_by("-create_time")
     if not todos:
