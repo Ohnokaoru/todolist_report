@@ -41,7 +41,7 @@ def create_todo(request):
 @login_required
 def all_todo(request):
     message = ""
-    todos = Todo.objects.all()
+    todos = Todo.objects.all().order_by("-create_time")
     if not todos:
         message = "沒有待辦事項"
 
@@ -140,7 +140,10 @@ def edit_todo(request, todo_id):
 # 選取完成待辦事項
 @login_required
 def uncompleted_todo(request):
-    uncompleted_todos = Todo.objects.filter(user=request.user, completed=False)
+    message = ""
+    uncompleted_todos = Todo.objects.filter(
+        user=request.user, completed=False
+    ).order_by("-create_time")
     total_uncompleted_todo = len(uncompleted_todos)
     if total_uncompleted_todo:
 
@@ -174,14 +177,74 @@ def uncompleted_todo(request):
         next = page < total_page
         prev = page > 1
 
-        return render(
-            request,
-            "todo/uncompleted-todo.html",
-            {
-                "page": page,
-                "total_page": total_page,
-                "uncompleted_todos": uncompleted_todos,
-                "next": next,
-                "prev": prev,
-            },
-        )
+    else:
+        message = "沒有未完成待辦事項"
+
+    return render(
+        request,
+        "todo/uncompleted-todo.html",
+        {
+            "page": page,
+            "total_page": total_page,
+            "uncompleted_todos": uncompleted_todos,
+            "next": next,
+            "prev": prev,
+            "message": message,
+        },
+    )
+
+
+# 選取完成待辦事項
+@login_required
+def completed_todo(request):
+    completed_todos = Todo.objects.filter(user=request.user, completed=True).order_by(
+        "-create_time"
+    )
+    message = ""
+    if completed_todos:
+        total_completed = len(completed_todos)
+        page = int(request.GET.get("page", 1))
+        page_size = 3
+        total_page = math.ceil(total_completed / page_size)
+        page_btn = request.GET.get("page_btn", "")
+
+        # 合理頁數
+        if page > total_page:
+            page = total_page
+
+        if page < 1:
+            page = 1
+
+        # 點擊上一頁
+        if page_btn == "prev" and page > 1:
+            page -= 1
+
+        # 點擊下一頁
+        if page_btn == "next" and page < total_page:
+            page += 1
+
+        # 計算一頁的筆數
+        start = (page - 1) * page_size
+        end = start + page_size
+        completed_todos = Todo.objects.filter(
+            user=request.user, completed=True
+        ).order_by("-create_time")[start:end]
+
+        next = page < total_page
+        prev = page > 1
+
+    else:
+        message = "沒有已完成的待辦事項"
+
+    return render(
+        request,
+        "todo/completed-todo.html",
+        {
+            "page": page,
+            "total_page": total_page,
+            "completed_todos": completed_todos,
+            "next": next,
+            "prev": prev,
+            "message": message,
+        },
+    )

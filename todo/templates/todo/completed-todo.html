@@ -1,33 +1,33 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %}未完成待辦事項{% endblock %}
+{% block title %}已完成待辦事項{% endblock %}
 
 {% block content %}
 <div id="title">
-    <h1>未完成待辦事項</h1>
+    <h1>已完成待辦事項</h1>
 </div>
 
 <div id="uncompleted-todo-list">
-    {% for todo in uncompleted_todos %}
+    {% for todo in completed_todos %}
 
-    <div id="uncompleted-todo-list-title" style="font-weight: 700; padding: 5px;">
+    <div id="completed-todo-list-title" style="font-weight: 700; padding: 5px;">
         <a href="{% url 'todo-detail'  todo.id %}">{{todo.title}}</a>
         <br>
     </div>
 
 
-    <div id="uncompleted-todo-list-text">
+    <div id="completed-todo-list-text">
         {{todo.text|slice:"5"}}... <br>
     </div>
     {% endfor %}
 
     <div id="page-a-button">
         {% if prev %}
-        <a href="{% url 'uncompleted-todo' %}?page_btn=prev&page={{page}}">上一頁</a>
+        <a href="{% url 'completed-todo' %}?page_btn=prev&page={{page}}">上一頁</a>
         {% endif %}
 
         {% if next %}
-        <a href="{% url 'uncompleted-todo' %}?page_btn=next&page={{page}}">下一頁</a>
+        <a href="{% url 'completed-todo' %}?page_btn=next&page={{page}}">下一頁</a>
         {% endif %}
     </div>
 </div>

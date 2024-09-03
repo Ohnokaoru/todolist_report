@@ -23,7 +23,8 @@ body {
 #all-todo-list,
 #todo-detail,
 #edit-todo,
-#uncompleted-todo-list {
+#uncompleted-todo-list,
+#completed-todo-list {
     margin: auto;
     background-color: burlywood;
     width: 40%;
@@ -55,7 +56,8 @@ body {
 
 #all-todo-list-text,
 #todo-detail-text,
-#uncompleted-todo-list-text {
+#uncompleted-todo-list-text,
+#completed-todo-list-text {
     background-color: beige;
     padding: 10px;
     margin-bottom: 10px;
