@@ -75,7 +75,8 @@ body {
     color: red;
 }
 
-#delete-todo-form {
+#delete-todo-form,
+#user-login-form {
     text-align: center;
     background-color: burlywood;
     margin: auto;

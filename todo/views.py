@@ -41,9 +41,10 @@ def create_todo(request):
 @login_required
 def all_todo(request):
     message = ""
-    todos = Todo.objects.all().order_by("-create_time")
+
+    todos = Todo.objects.filter(user=request.user).order_by("-create_time")
     if not todos:
-        message = "沒有待辦事項"
+        return redirect("create-todo")
 
     else:
         # 頁數預設為1
@@ -73,7 +74,9 @@ def all_todo(request):
         # 計算一頁的資料
         start = (page - 1) * page_size
         end = start + page_size
-        todos = Todo.objects.all().order_by("-create_time")[start:end]
+        todos = Todo.objects.filter(user=request.user).order_by("-create_time")[
+            start:end
+        ]
 
         next = page < total_page
         prev = page > 1
@@ -83,7 +86,7 @@ def all_todo(request):
             "todo/all-todo.html",
             {
                 "page": page,
-                "total_page": total_page,
+                "total_page": range(1, total_page + 1),
                 "todos": todos,
                 "next": next,
                 "prev": prev,
@@ -185,7 +188,7 @@ def uncompleted_todo(request):
         "todo/uncompleted-todo.html",
         {
             "page": page,
-            "total_page": total_page,
+            "total_page": range(1, total_page + 1),
             "uncompleted_todos": uncompleted_todos,
             "next": next,
             "prev": prev,
@@ -241,7 +244,7 @@ def completed_todo(request):
         "todo/completed-todo.html",
         {
             "page": page,
-            "total_page": total_page,
+            "total_page": range(1, total_page + 1),
             "completed_todos": completed_todos,
             "next": next,
             "prev": prev,

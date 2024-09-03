@@ -41,7 +41,7 @@ def user_login(request):
 
         if user:
             login(request, user)
-            message = "登入成功"
+            return redirect("all-todo")
 
         else:
             message = "資料錯誤"

@@ -27,6 +27,10 @@
         <a href="{% url 'uncompleted-todo' %}?page_btn=prev&page={{page}}">上一頁</a>
         {% endif %}
 
+        {% for i in total_page %}
+        <a href="{% url 'uncompleted-todo' %}?page_btn=&page={{i}}">{{i}}</a>
+        {% endfor %}
+
         {% if next %}
         <a href="{% url 'uncompleted-todo' %}?page_btn=next&page={{page}}">下一頁</a>
         {% endif %}
