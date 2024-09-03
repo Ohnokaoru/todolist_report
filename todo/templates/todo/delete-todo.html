@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}確認刪除待辦事項{% endblock %}
+
+{% block content %}
+<div id="title">
+    <h1>確認刪除待辦事項</h1>
+</div>
+<div id="delete-todo-form">
+    <form action="" method="POST">
+        {% csrf_token %}
+        確認要刪除
+        <div class="span">{{delete_todo.title}} </div> <br>
+
+        <input type="submit" id="submit-button" value="確定">
+    </form>
+</div>
+{% endblock %}

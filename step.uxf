@@ -78,7 +78,7 @@ user_logout</panel_attributes>
       <x>340</x>
       <y>220</y>
       <w>210</w>
-      <h>110</h>
+      <h>140</h>
     </coordinates>
     <panel_attributes>todo
 --
@@ -86,6 +86,7 @@ create-todo
 all_todo
 edit_todo
 uncompleted_todo
+completed_todo
 delete_todo
 </panel_attributes>
     <additional_attributes/>

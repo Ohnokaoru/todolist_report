@@ -69,3 +69,17 @@ body {
     text-align: center;
     margin: auto;
 }
+
+.span {
+    font-weight: 700;
+    color: red;
+}
+
+#delete-todo-form {
+    text-align: center;
+    background-color: burlywood;
+    margin: auto;
+    width: 30%;
+    padding: 10px;
+    border-radius: 10px;
+}

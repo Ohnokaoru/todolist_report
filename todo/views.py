@@ -248,3 +248,22 @@ def completed_todo(request):
             "message": message,
         },
     )
+
+
+# 刪除待辦事項
+@login_required
+def delete_todo(request, todo_id):
+    delete_todo = ""
+
+    try:
+        delete_todo = Todo.objects.get(user=request.user, id=todo_id)
+
+    except Todo.DoesNotExist:
+        return redirect("all-todo")
+
+    if request.method == "POST":
+        delete_btn = request.POST.get("delete_btn")
+        delete_todo.delete()
+        return redirect("all-todo")
+
+    return render(request, "todo/delete-todo.html", {"delete_todo": delete_todo})

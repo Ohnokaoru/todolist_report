@@ -9,11 +9,18 @@
 <div id="todo-detail">
     {{todo.title}}
     {% if todo.completed %}
-    (完成)<br>
+    (完成)
+    <a href="{% url 'delete-todo' todo.id %}"><img src="{% static 'images/x.png' %}" alt="刪除" width="30" height="30"
+            style="float: right;"></a>
+    <br>
     {% else %}
-    (未完成) <br>
+    (未完成)
+    <a href="{% url 'delete-todo' todo.id %}"><img src="{% static 'images/x.png' %}" alt="刪除" width="30" height="30"
+            style="float: right;"></a>
+    <br>
     {% endif %}
     <br>
+
     <div id="todo-detail-text">
         {{todo.text}}
         <br>
@@ -36,6 +43,8 @@
     </div>
     <div id="edit-a-button">
         <a href="{% url 'edit-todo' todo.id %}">修改內文</a>
+
+
     </div>
 </div>
 
