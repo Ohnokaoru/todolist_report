@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from .forms import TodoForm
 import math
 from django.utils import timezone
+from django.core.paginator import Paginator
 
 
 # Create your views here.
@@ -47,50 +48,23 @@ def all_todo(request):
         return redirect("create-todo")
 
     else:
-        # 頁數預設為1
-        page = int(request.GET.get("page", 1))
-        # 切換上下頁預設為空
-        page_btn = request.GET.get("page_btn", "")
 
-        total_todo = len(todos)
-        page_size = 3
-        total_page = math.ceil(total_todo / page_size)
+        # 分頁器(object_list,一頁多少筆)
+        paginator = Paginator(todos, 3)
+        # 若為None給1
+        try:
+            page_number = int(request.GET.get("page", 1))
 
-        # 合理頁數
-        if page > total_page:
-            page = total_page
+        except (TypeError, ValueError):
+            page_number = 1
 
-        if page < 1:
-            page = 1
-
-        # 點擊上頁
-        if page_btn == "prev" and page > 1:
-            page -= 1
-
-        # 點擊下頁
-        if page_btn == "next" and page < total_page:
-            page += 1
-
-        # 計算一頁的資料
-        start = (page - 1) * page_size
-        end = start + page_size
-        todos = Todo.objects.filter(user=request.user).order_by("-create_time")[
-            start:end
-        ]
-
-        next = page < total_page
-        prev = page > 1
+        # 計算合理頁數，並取得頁碼(第一頁與與總共多少頁)
+        page_obj = paginator.get_page(page_number)
 
         return render(
             request,
             "todo/all-todo.html",
-            {
-                "page": page,
-                "total_page": range(1, total_page + 1),
-                "todos": todos,
-                "next": next,
-                "prev": prev,
-            },
+            {"page_obj": page_obj},
         )
 
 
