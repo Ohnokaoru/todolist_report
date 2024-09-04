@@ -5,4 +5,4 @@ from django import forms
 class TodoForm(forms.ModelForm):
     class Meta:
         model = Todo
-        exclude = ("user", "completed_time")
+        exclude = ("user", "completed_time","create_time")

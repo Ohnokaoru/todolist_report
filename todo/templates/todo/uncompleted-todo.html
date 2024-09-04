@@ -8,7 +8,7 @@
 </div>
 
 <div id="uncompleted-todo-list">
-    {% for todo in uncompleted_todos %}
+    {% for todo in page_obj %}
 
     <div id="uncompleted-todo-list-title" style="font-weight: 700; padding: 5px;">
         <a href="{% url 'todo-detail'  todo.id %}">{{todo.title}}</a>
@@ -23,16 +23,21 @@
     {% endfor %}
 
     <div id="page-a-button">
-        {% if prev %}
-        <a href="{% url 'uncompleted-todo' %}?page_btn=prev&page={{page}}">上一頁</a>
+        {% if page_obj.has_previous %}
+        <a href="{% url 'uncompleted-todo' %}?page={{page_obj.previous_page_numbet}}">上一頁</a>
         {% endif %}
 
-        {% for i in total_page %}
-        <a href="{% url 'uncompleted-todo' %}?page_btn=&page={{i}}">{{i}}</a>
+        {% for num in page_obj.paginator.page_range %}
+        {% if num == page_obj.number %}
+        {{num}}
+
+        {% else %}
+        <a href="{% url 'uncompleted-todo' %}?page={{ num }}">{{ num }}</a>
+        {% endif %}
         {% endfor %}
 
-        {% if next %}
-        <a href="{% url 'uncompleted-todo' %}?page_btn=next&page={{page}}">下一頁</a>
+        {% if page_obj.has_next %}
+        <a href="{% url 'uncompleted-todo' %}?page={{page_obj.next_page_number}}">下一頁</a>
         {% endif %}
     </div>
 </div>

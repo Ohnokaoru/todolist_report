@@ -15,14 +15,14 @@
 
         {% if request.user.is_authenticated %}
         歡迎{{request.user}}:
-        <a href="{% url 'all-todo' %}">首頁</a>
+        <a href="{% url 'all-todo' %}">所有待辦事項</a>
         <a href="{% url 'create-todo' %}">建立待辦事項</a>
         <a href="{% url 'uncompleted-todo' %}">未完成待辦事項</a>
         <a href="{% url 'completed-todo' %}">已完成待辦事項</a>
         <a href="{% url 'user-logout' %}">登出</a>
 
         {% else %}
-        <a href="{% url 'all-todo' %}">首頁</a>
+
         <a href="{% url 'user-login' %}">登入</a>
         <a href="{% url 'user-register' %}">註冊</a>
 
