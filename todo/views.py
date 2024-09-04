@@ -3,12 +3,15 @@ from .models import Todo
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .forms import TodoForm
-import math
 from django.utils import timezone
 from django.core.paginator import Paginator
-
+from django.http import HttpResponse
 
 # Create your views here.
+
+
+def index(request):
+    return render(request, "todo/index.html")
 
 
 # 新增待辦事項

@@ -2,6 +2,8 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
+    path("", views.index, name="index"),
+    path("index/", views.index, name="index"),
     path("create-todo/", views.create_todo, name="create-todo"),
     path("all-todo/", views.all_todo, name="all-todo"),
     path("todo-detail/<int:todo_id>/", views.todo_detail, name="todo-detail"),
