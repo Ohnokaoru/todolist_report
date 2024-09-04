@@ -57,7 +57,6 @@ def all_todo(request):
         except (TypeError, ValueError):
             page_number = 1
 
-        # 計算合理頁數，並取得頁碼(第一頁與與總共多少頁)
         page_obj = paginator.get_page(page_number)
 
         return render(
@@ -113,7 +112,7 @@ def edit_todo(request, todo_id):
     )
 
 
-# 選取完成待辦事項
+# 選取未完成待辦事項
 @login_required
 def uncompleted_todo(request):
     message = ""
@@ -122,7 +121,7 @@ def uncompleted_todo(request):
     ).order_by("-create_time")
 
     if not uncompleted_todos:
-        return redirect("all-todo")
+        return redirect("create-todo")
 
     else:
         paginator = Paginator(uncompleted_todos, 3)
@@ -144,53 +143,25 @@ def completed_todo(request):
     completed_todos = Todo.objects.filter(user=request.user, completed=True).order_by(
         "-create_time"
     )
-    message = ""
-    if completed_todos:
-        total_completed = len(completed_todos)
-        page = int(request.GET.get("page", 1))
-        page_size = 3
-        total_page = math.ceil(total_completed / page_size)
-        page_btn = request.GET.get("page_btn", "")
 
-        # 合理頁數
-        if page > total_page:
-            page = total_page
-
-        if page < 1:
-            page = 1
-
-        # 點擊上一頁
-        if page_btn == "prev" and page > 1:
-            page -= 1
-
-        # 點擊下一頁
-        if page_btn == "next" and page < total_page:
-            page += 1
-
-        # 計算一頁的筆數
-        start = (page - 1) * page_size
-        end = start + page_size
-        completed_todos = Todo.objects.filter(
-            user=request.user, completed=True
-        ).order_by("-create_time")[start:end]
-
-        next = page < total_page
-        prev = page > 1
+    if not completed_todos:
+        return redirect("all-todo")
 
     else:
-        message = "沒有已完成的待辦事項"
+        paginator = Paginator(completed_todos, 3)
+
+        try:
+            page_number = int(request.GET.get("page", 1))
+
+        except (ValueError, TypeError):
+            page_number = 1
+
+        page_obj = paginator.get_page(page_number)
 
     return render(
         request,
         "todo/completed-todo.html",
-        {
-            "page": page,
-            "total_page": range(1, total_page + 1),
-            "completed_todos": completed_todos,
-            "next": next,
-            "prev": prev,
-            "message": message,
-        },
+        {"page_obj": page_obj},
     )
 
 
